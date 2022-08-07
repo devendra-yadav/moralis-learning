@@ -102,19 +102,19 @@
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="file" class="align-text-bottom"></span>
-              Orders
+               Profile
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="#" id="show-form-send-native-tokens">
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
-              Products
+              Send Crypto (ETH)
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="#" id="show-form-send-erc20-tokens">
               <span data-feather="users" class="align-text-bottom"></span>
-              Customers
+              Send Crypto (ERC20)
             </a>
           </li>
           <li class="nav-item">
@@ -182,46 +182,86 @@
       </div>
       <h6 id="wallet-address" hidden="hidden"></h6>
 
+      <div id="send-native-tokens">
+        <h2>Send Native Tokens</h2>
+        <form>
+          <div class="mb-3 col-md-5">
 
-      <h2>Send Crypto</h2>
-      <form>
-        <div class="mb-3 col-md-5">
+            <label for="crypto-type" class="form-label">Currency</label>
+            <select id="crypto-type" class="form-select mb-3 col-md-5" aria-label="Default select example">
+              <option selected value="ETH">ETH</option>
+              <option value="MATIC">MATIC</option>
+              <option value="BNB">BNB</option>
+            </select>
 
-          <label for="crypto-type" class="form-label">Currency</label>
-          <select id="crypto-type" class="form-select mb-3 col-md-5" aria-label="Default select example">
-            <option selected value="ETH">ETH</option>
-            <option value="MATIC">MATIC</option>
-            <option value="BNB">BNB</option>
-          </select>
+            <label for="amount" class="form-label">Amount to send</label>
+            <input type="input" class="form-control" id="crypto-amount-to-send">
+            
+          </div>
 
-          <label for="amount" class="form-label">Amount to send</label>
-          <input type="input" class="form-control" id="crypto-amount-to-send">
           
-        </div>
 
-        
+          <div class="mb-3 col-md-5">
+            <label for="receiver-address" class="form-label">Receiver Address</label>
+            <input type="input" class="form-control" id="receiver-address" >
+            <div id="processing-crypto-transfer"  hidden="hidden">
+              <img src="./img/processing.gif" width="50px">
+            </div>
 
-        <div class="mb-3 col-md-5">
-          <label for="receiver-address" class="form-label">Receiver Address</label>
-          <input type="input" class="form-control" id="receiver-address" >
-          <div id="processing-crypto-transfer"  hidden="hidden">
-            <img src="./img/processing.gif" width="50px">
-          </div>
+            <div id="crypto-transfer-success"  hidden="hidden">
+              <img src="./img/success.jpg" width="50px">
+            </div>
 
-          <div id="crypto-transfer-success"  hidden="hidden">
-            <img src="./img/success.jpg" width="50px">
-          </div>
-
-          <div id="crypto-transfer-failure"  hidden="hidden">
-            <img src="./img/failed.png" width="50px">
-            <p id="crpto-transfer-failure-message" hidden="hidden"></p>
+            <div id="crypto-transfer-failure"  hidden="hidden">
+              <img src="./img/failed.png" width="50px">
+              <p id="crpto-transfer-failure-message" hidden="hidden"></p>
+            </div>
+            
           </div>
           
-        </div>
-        
-        <button type="button" id="btn-send-crypto" class="btn btn-primary">Submit</button>
-      </form>
+          <button type="button" id="btn-send-crypto" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
 
+      <div id="send-erc20-tokens" hidden="hidden">
+        <h2>Send ERC20 Tokens</h2>
+        <form>
+          <div class="mb-3 col-md-5">
+
+            <label for="crypto-type" class="form-label">Currency</label>
+            <select id="erc20-crypto-type" class="form-select mb-3 col-md-5" aria-label="Default select example">
+              <option selected value="AYT">AYT</option>
+              <option value="AMD">AMD</option>
+            </select>
+
+            <label for="amount" class="form-label">Amount to send</label>
+            <input type="input" class="form-control" id="erc20-crypto-amount-to-send">
+            
+          </div>
+
+          
+
+          <div class="mb-3 col-md-5">
+            <label for="receiver-address" class="form-label">Receiver Address</label>
+            <input type="input" class="form-control" id="erc20-receiver-address" >
+            <div id="erc20-processing-crypto-transfer"  hidden="hidden">
+              <img src="./img/processing.gif" width="50px">
+            </div>
+
+            <div id="erc20-crypto-transfer-success"  hidden="hidden">
+              <img src="./img/success.jpg" width="50px">
+            </div>
+
+            <div id="erc20-crypto-transfer-failure"  hidden="hidden">
+              <img src="./img/failed.png" width="50px">
+              <p id="erc20-crpto-transfer-failure-message" hidden="hidden"></p>
+            </div>
+            
+          </div>
+          
+          <button type="button" id="erc20-btn-send-crypto" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
 
       </div>
     </main>

@@ -58,8 +58,6 @@ async function transferCrypto(){
       amount=Moralis.Units.BNB(amountValue)
     }else if(cryptoType === "MATIC"){
       amount=Moralis.Units.MATIC(amountValue)
-    }else{
-      transferERC20Crypto(cryptoType,amountValue, address)
     }
   
     const options = {
@@ -80,9 +78,51 @@ async function transferCrypto(){
   document.getElementById("processing-crypto-transfer").hidden="hidden";
 }
 
-async function transferERC20Crypto(cryptoType, amountValue, receiverAddress){
-  console.log(`ERC20 token came: ${cryptoType} ${amountValue} ${receiverAddress}`)
+async function transferERC20Crypto(){
+  document.getElementById("erc20-crypto-transfer-success").hidden="hidden";
+  document.getElementById("erc20-crypto-transfer-failure").hidden="hidden";
+  document.getElementById("erc20-processing-crypto-transfer").hidden="hidden";
+  document.getElementById("erc20-crpto-transfer-failure-message").hidden="hidden";
+  
+
+
+  const amountValue=document.getElementById("erc20-crypto-amount-to-send").value;
+  const address=document.getElementById("erc20-receiver-address").value;
+  const cryptoType=document.getElementById("erc20-crypto-type").value;
+  console.log(`${cryptoType} ${amountValue} to send to ${address}`)
+  document.getElementById("erc20-processing-crypto-transfer").hidden="";
+  let amount;
+
+  
+  try{
+
+    if(cryptoType === "AYT"){
+      amount=Moralis.Units.Token(amountValue,"18")
+      contractAddress="0x31331D61F2049cB51262EC0D6061321D96C52376";
+    }else if(cryptoType === "AMD"){
+      amount=Moralis.Units.Token(amountValue,"18")
+      contractAddress="0x2CCA4ebB77781D59c5A0E58d204eC53c4e9D7520";
+    }
+  
+    const options = {
+      type: "erc20",
+      amount: amount,
+      receiver: address,
+      contractAddress: contractAddress
+    };
+    let result = await Moralis.transfer(options);
+    document.getElementById("erc20-crypto-transfer-success").hidden="";
+
+  }catch(error){
+    console.log("Error transferring crypto. "+error);
+    document.getElementById("erc20-crypto-transfer-failure").hidden="";
+    document.getElementById("erc20-crpto-transfer-failure-message").innerHTML=error;
+    document.getElementById("erc20-crpto-transfer-failure-message").hidden="";
+  }
+  
+  document.getElementById("erc20-processing-crypto-transfer").hidden="hidden";
 }
+
 
 //logout
 async function logout(){
@@ -93,10 +133,28 @@ async function logout(){
   document.getElementById("wallet-address").innerHTML="";
 }
 
+//show erc20 token send form
+async function showErc20transferTokenForm(){
+  //send-native-tokens
+  document.getElementById("send-native-tokens").hidden="hidden";
+  document.getElementById("send-erc20-tokens").hidden="";
+
+}
+
+async function showNativetransferTokenForm(){
+  document.getElementById("send-native-tokens").hidden="";
+  document.getElementById("send-erc20-tokens").hidden="hidden";
+}
+
 //add the onclick function to the login/logout buttons
 document.getElementById("btn-metamask-connect").onclick=login;
 document.getElementById("btn-logout").onclick=logout;
 document.getElementById("btn-send-crypto").onclick=transferCrypto;
+document.getElementById("show-form-send-erc20-tokens").onclick=showErc20transferTokenForm;
+document.getElementById("show-form-send-native-tokens").onclick=showNativetransferTokenForm;
+document.getElementById("erc20-btn-send-crypto").onclick=transferERC20Crypto;
+
+
 
 
 //Old bootstrap code
