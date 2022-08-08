@@ -118,9 +118,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="#" id="show-form-search-transaction">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-              Reports
+              Search Transaction
             </a>
           </li>
           <li class="nav-item">
@@ -260,6 +260,53 @@
           </div>
           
           <button type="button" id="erc20-btn-send-crypto" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+      <div id="search-transaction" hidden="hidden">
+        <h2>Search Transaction</h2>
+        <form>
+          <div class="mb-3 col-md-5">
+
+            <label for="blockchain-type" class="form-label">Blockchain Type</label>
+            <select id="blockchain-type" class="form-select mb-3 col-md-5" aria-label="Default select example">
+              <option selected value="eth">Ethereum Mainnet (Default)</option>
+              <option value="georli">Goerli (Ethereum Testnet)</option>
+              <option value="bsc">Binance Smart Chain Mainnet</option>
+              <option value="bsc testnet">Binance Smart Chain Testnet</option>
+              <option value="matic">Polygon (Matic) Mainnet</option>
+              <option value="mumbai">Mumbai (Matic Testnet)</option>
+              <option value="avalanche">Avalanche Mainnet</option>
+              <option value="avalanche testnet">Avalanche Testnet</option>
+              <option value="fantom">Fantom Mainnet</option>
+              <option value="cronos">Cronos Mainnet</option>
+            </select>
+
+            <label for="transaction-hash" class="form-label">Transaction Hash</label>
+            <input type="input" class="form-control" id="transaction-hash">
+            
+          </div>
+
+          
+
+          <div class="mb-3 col-md-5">
+            
+            <div id="processing-search-transaction"  hidden="hidden">
+              <img src="./img/processing.gif" width="50px">
+            </div>
+
+            <div id="search-transaction-success"  hidden="hidden">
+              
+            </div>
+
+            <div id="search-transaction-failure"  hidden="hidden">
+              <img src="./img/failed.png" width="50px">
+              <p id="search-transaction-failure-message"></p>
+            </div>
+            
+          </div>
+          
+          <button type="button" id="btn-search-transaction" class="btn btn-primary">Search</button>
         </form>
       </div>
 
