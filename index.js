@@ -5,7 +5,6 @@ const appId="ddH7sF6jHF8CmBwfzY9wZiVOGA6DxfIuQ0eSeVEd";
 Moralis.start({serverUrl,appId});
 
 
-
 async function login(){
     try{
 

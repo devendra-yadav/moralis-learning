@@ -42,7 +42,6 @@ async function transferCrypto(){
   document.getElementById("crpto-transfer-failure-message").hidden="hidden";
   
 
-
   const amountValue=document.getElementById("crypto-amount-to-send").value;
   const address=document.getElementById("receiver-address").value;
   const cryptoType=document.getElementById("crypto-type").value;
