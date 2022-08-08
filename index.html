@@ -76,16 +76,11 @@
   <body>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">MORALIS LEARNING</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
-    </div>
-  </div>
+  
 </header>
 
 <div class="container-fluid">
@@ -93,76 +88,31 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home" class="align-text-bottom"></span>
-              Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file" class="align-text-bottom"></span>
-               Profile
-            </a>
-          </li>
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="#" id="show-form-send-native-tokens">
-              <span data-feather="shopping-cart" class="align-text-bottom"></span>
+              <span  class="align-text-bottom"></span>
+              
               Send Crypto (ETH)
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="show-form-send-erc20-tokens">
-              <span data-feather="users" class="align-text-bottom"></span>
+              <span  class="align-text-bottom"></span>
               Send Crypto (ERC20)
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
-              Reports
+            <a class="nav-link" href="#" id="show-form-search-transaction">
+              <span  class="align-text-bottom"></span>
+              Search Transaction
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers" class="align-text-bottom"></span>
-              Integrations
-            </a>
-          </li>
+          
         </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-          <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle" class="align-text-bottom"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Current month
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Last quarter
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Social engagement
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file-text" class="align-text-bottom"></span>
-              Year-end sale
-            </a>
-          </li>
-        </ul>
+        
       </div>
     </nav>
 
@@ -190,8 +140,8 @@
             <label for="crypto-type" class="form-label">Currency</label>
             <select id="crypto-type" class="form-select mb-3 col-md-5" aria-label="Default select example">
               <option selected value="ETH">ETH</option>
-              <option value="MATIC">MATIC</option>
-              <option value="BNB">BNB</option>
+              <!--<option value="MATIC">MATIC</option>
+              <option value="BNB">BNB</option>-->
             </select>
 
             <label for="amount" class="form-label">Amount to send</label>
@@ -224,14 +174,14 @@
       </div>
 
       <div id="send-erc20-tokens" hidden="hidden">
-        <h2>Send ERC20 Tokens</h2>
+        <h2>Send ERC20 Tokens (Rinkeby TestNet)</h2>
         <form>
           <div class="mb-3 col-md-5">
 
             <label for="crypto-type" class="form-label">Currency</label>
             <select id="erc20-crypto-type" class="form-select mb-3 col-md-5" aria-label="Default select example">
-              <option selected value="AYT">AYT</option>
-              <option value="AMD">AMD</option>
+              <option selected value="AYT">AYUSHI Token</option>
+              <option value="AMD">AMD Token</option>
             </select>
 
             <label for="amount" class="form-label">Amount to send</label>
@@ -260,6 +210,53 @@
           </div>
           
           <button type="button" id="erc20-btn-send-crypto" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+
+      <div id="search-transaction" hidden="hidden">
+        <h2>Search Transaction</h2>
+        <form>
+          <div class="mb-3 col-md-5">
+
+            <label for="blockchain-type" class="form-label">Blockchain Type</label>
+            <select id="blockchain-type" class="form-select mb-3 col-md-5" aria-label="Default select example">
+              <option selected value="eth">Ethereum Mainnet (Default)</option>
+              <option value="georli">Goerli (Ethereum Testnet)</option>
+              <option value="bsc">Binance Smart Chain Mainnet</option>
+              <option value="bsc testnet">Binance Smart Chain Testnet</option>
+              <option value="matic">Polygon (Matic) Mainnet</option>
+              <option value="mumbai">Mumbai (Matic Testnet)</option>
+              <option value="avalanche">Avalanche Mainnet</option>
+              <option value="avalanche testnet">Avalanche Testnet</option>
+              <option value="fantom">Fantom Mainnet</option>
+              <option value="cronos">Cronos Mainnet</option>
+            </select>
+
+            <label for="transaction-hash" class="form-label">Transaction Hash</label>
+            <input type="input" class="form-control" id="transaction-hash">
+            
+          </div>
+
+          
+
+          <div class="mb-3 col-md-5">
+            
+            <div id="processing-search-transaction"  hidden="hidden">
+              <img src="./img/processing.gif" width="50px">
+            </div>
+
+            <div id="search-transaction-success"  hidden="hidden">
+              
+            </div>
+
+            <div id="search-transaction-failure"  hidden="hidden">
+              <img src="./img/failed.png" width="50px">
+              <p id="search-transaction-failure-message"></p>
+            </div>
+            
+          </div>
+          
+          <button type="button" id="btn-search-transaction" class="btn btn-primary">Search</button>
         </form>
       </div>
 

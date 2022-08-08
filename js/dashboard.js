@@ -34,13 +34,13 @@ async function login(){
   document.getElementById("wallet-address").hidden="";
 }
 
+//Transfer native tokens
 async function transferCrypto(){
   document.getElementById("crypto-transfer-success").hidden="hidden";
   document.getElementById("crypto-transfer-failure").hidden="hidden";
   document.getElementById("processing-crypto-transfer").hidden="hidden";
   document.getElementById("crpto-transfer-failure-message").hidden="hidden";
   
-
 
   const amountValue=document.getElementById("crypto-amount-to-send").value;
   const address=document.getElementById("receiver-address").value;
@@ -78,6 +78,7 @@ async function transferCrypto(){
   document.getElementById("processing-crypto-transfer").hidden="hidden";
 }
 
+//transfer ERC20 tokens
 async function transferERC20Crypto(){
   document.getElementById("erc20-crypto-transfer-success").hidden="hidden";
   document.getElementById("erc20-crypto-transfer-failure").hidden="hidden";
@@ -124,6 +125,41 @@ async function transferERC20Crypto(){
 }
 
 
+//Search a transaction hash on a blockchain
+async function searchTransaction(){
+
+  document.getElementById("processing-search-transaction").hidden="";
+  document.getElementById("search-transaction-success").hidden="hidden";
+  document.getElementById("search-transaction-failure").hidden="hidden";
+
+
+  const blockChainType = document.getElementById("blockchain-type").value;
+  const transactionHash = document.getElementById("transaction-hash").value;
+
+  try{
+    const options = {
+      chain: blockChainType,
+      transaction_hash: transactionHash
+    }
+
+    const transactionData=await Moralis.Web3API.native.getTransaction(options);
+
+    console.log("Data "+JSON.stringify(transactionData, null, '\t'))
+    document.getElementById("search-transaction-success").innerHTML="<pre>"+JSON.stringify(transactionData, null, 2)+"</pre>";
+
+    document.getElementById("processing-search-transaction").hidden="hidden";
+    document.getElementById("search-transaction-success").hidden="";
+
+  }catch(error){
+    console.log(error);
+    document.getElementById("processing-search-transaction").hidden="hidden";
+    document.getElementById("search-transaction-failure-message").innerHTML=error;
+    document.getElementById('search-transaction-failure').hidden="";
+  }
+
+}
+
+
 //logout
 async function logout(){
   await Moralis.User.logOut();
@@ -138,11 +174,19 @@ async function showErc20transferTokenForm(){
   //send-native-tokens
   document.getElementById("send-native-tokens").hidden="hidden";
   document.getElementById("send-erc20-tokens").hidden="";
-
+  document.getElementById("search-transaction").hidden="hidden";
 }
 
 async function showNativetransferTokenForm(){
   document.getElementById("send-native-tokens").hidden="";
+  document.getElementById("send-erc20-tokens").hidden="hidden";
+  document.getElementById("search-transaction").hidden="hidden";
+}
+
+
+async function showSearchTransactionForm(){
+  document.getElementById("search-transaction").hidden="";
+  document.getElementById("send-native-tokens").hidden="hidden";
   document.getElementById("send-erc20-tokens").hidden="hidden";
 }
 
@@ -153,8 +197,9 @@ document.getElementById("btn-send-crypto").onclick=transferCrypto;
 document.getElementById("show-form-send-erc20-tokens").onclick=showErc20transferTokenForm;
 document.getElementById("show-form-send-native-tokens").onclick=showNativetransferTokenForm;
 document.getElementById("erc20-btn-send-crypto").onclick=transferERC20Crypto;
+document.getElementById("show-form-search-transaction").onclick=showSearchTransactionForm;
 
-
+document.getElementById("btn-search-transaction").onclick=searchTransaction;
 
 
 //Old bootstrap code
